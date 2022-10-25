@@ -486,3 +486,5 @@ include('controllers/DBController.php');
 <?php
 include('includes/footer.php');
 include('includes/scripts.php');
+
+?>
