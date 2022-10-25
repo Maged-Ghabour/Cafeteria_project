@@ -2,7 +2,7 @@
 
 class Db
 {
-    var $servername, $db_username, $db_password, $dbname;
+    public $servername, $db_username, $db_password, $dbname;
     // database info => updated later  
     public function __construct($servername, $db_username, $db_password, $dbname)
     {

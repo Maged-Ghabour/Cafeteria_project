@@ -20,13 +20,9 @@ include('includes/navbar.php');
         </div>
     </div>
     <!-- End Breadcrumbs -->
-
     <section class="sample-page">
-        <div class="container" data-aos="fade-up">
-            <p>
-                You can duplicate this sample page and create any number of inner pages
-                you like!
-            </p>
+        <div class="container data-aos='fade-up'">
+            <p>index/new</p>
         </div>
     </section>
 </main>

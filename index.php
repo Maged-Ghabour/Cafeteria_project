@@ -1,12 +1,11 @@
 <!-- Start Includes -->
-
 <?php
 include('includes/session.php');
 include('includes/head.php');
 include('includes/navbar.php');
-include('controllers/DBController.php')
+include('controllers/DBController.php');
 ?>
-<!-- ======= Hero Section ======= -->
+<!-- ======= Categories ======= -->
 <section id="hero" class="hero d-flex align-items-center section-bg">
     <div class="container">
         <div class="row justify-content-between gy-5">
@@ -29,27 +28,8 @@ include('controllers/DBController.php')
 </section>
 <!-- End Hero Section -->
 
-<?php
-///////////////////////////////    only for check      ////////////////////
-// global $conn;
-// $sql = "SELECT users.* FROM users";
-// $result = $conn->query($sql);
-// $users = [];
 
-// if ($result->num_rows > 0) {
-//     // output data of each row 
-//     while ($row = $result->fetch_assoc()) {
-//         array_push($users, $row);
-//     }
-//     foreach ($users as $user) {
-//         echo $user['name'];
-//     }
-// } else {
-//     return false;
-// }
-// 
-?>
-
+<!-- Products -->
 <main id="main">
     <!-- ======= Menu Section ======= -->
     <section id="menu" class="menu">
@@ -501,7 +481,7 @@ include('controllers/DBController.php')
     </section>
     <!-- End Contact Section -->
 </main>
-<!-- End #main -->
+<!-- End Products -->
 
 <?php
 include('includes/footer.php');
