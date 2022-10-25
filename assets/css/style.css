@@ -2,11 +2,13 @@
 html,body{
     background-color: #fff;
     font-family: 'Poppins', sans-serif;
-}
-::selection{
-    color: #fff;
    
 }
+::selection{
+    /* color: #fff; */
+   
+}
+
 .container{
     position: absolute;
     top: 50%;

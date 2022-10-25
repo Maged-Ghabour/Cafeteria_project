@@ -1,3 +1,8 @@
+<?php 
+
+session_start();
+
+?>
 <body>
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
@@ -5,7 +10,7 @@
             <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="assets/img/logo.png" alt=""> -->
-                <h1>Yummy<span>.</span></h1>
+                <h1>Cafetaria<span>.</span></h1>
             </a>
 
             <nav id="navbar" class="navbar">
@@ -43,8 +48,17 @@
             <!-- .navbar -->
 
             <a class="btn-book-a-table" href="#book-a-table">Book a Table</a>
-            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+                      <!-- If User  only Login ==>  Show Logout and his name -->
+            <?php if (isset($_SESSION["id"])) { ?>
+            <a class="nav-item nav-link disabled text-muted mx-0">Hello , <?php echo $_SESSION["name"] . " 👋" ?></a>
+            <a class="btn-book-a-table mx-1" href="handlers/handleLogout.php">logout</a>
+            <?php } ?>
+            <?php if (!isset($_SESSION["id"])) { ?>
+                <a class="btn-book-a-table bg-primary text-white mx-0" href="views/login.php">login</a>
+
+            <?php }?>
+         
         </div>
     </header>
     <!-- End Header -->

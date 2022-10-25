@@ -1,5 +1,6 @@
 <?php
 
+
 class Db
 {
     var $servername, $db_username, $db_password, $dbname;
