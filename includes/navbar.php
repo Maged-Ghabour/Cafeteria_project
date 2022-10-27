@@ -13,7 +13,6 @@ session_start();
                 <!-- <img src="assets/img/logo.png" alt=""> -->
                 <h1>Cafetaria<span>.</span></h1>
             </a>
-
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a href="#hero">Home</a></li>
@@ -53,10 +52,10 @@ session_start();
             <!-- If User  only Login ==>  Show Logout and his name -->
             <?php if (isset($_SESSION["id"])) { ?>
                 <a class="nav-item nav-link disabled text-muted mx-0">Hello , <?php echo $_SESSION["name"] . " 👋" ?></a>
-                <a class="btn-book-a-table mx-1" href="handlers/handleLogout.php">logout</a>
+                <a class="btn-book-a-table mx-1" href="../../Cafeteria_project/handlers/handleLogout.php">logout</a>
             <?php } ?>
             <?php if (!isset($_SESSION["id"])) { ?>
-                <a class="btn-book-a-table bg-primary text-white mx-0" href="views/login.php">login</a>
+                <a class="btn-book-a-table bg-primary text-white mx-0" href="../../Cafeteria_project/views/login.php">login</a>
 
             <?php } ?>
 

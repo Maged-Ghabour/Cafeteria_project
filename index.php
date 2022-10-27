@@ -28,7 +28,6 @@ include('controllers/DBController.php');
 </section>
 <!-- End Hero Section -->
 
-
 <!-- Products -->
 <main id="main">
     <!-- ======= Menu Section ======= -->

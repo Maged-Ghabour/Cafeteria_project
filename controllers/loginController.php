@@ -1,10 +1,12 @@
-<?php 
+<?php
 
 
 require "DBController.php";
-class Login{
+class Login
+{
 
-    public function attempt($email , $hashed_Password){
+    public function attempt($email, $hashed_Password)
+    {
         global $conn;
         $query = "SELECT * from users
         Where `email` = '$email'  and `password` = '$hashed_Password'";
@@ -13,11 +15,9 @@ class Login{
 
         $user = null;
 
-        if($result->num_rows == 1){
-            $user = $result ->fetch_assoc();
+        if ($result->num_rows == 1) {
+            $user = $result->fetch_assoc();
         }
         return $user;
-
     }
-    
 }
