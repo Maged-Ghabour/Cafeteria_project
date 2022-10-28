@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 offset-md-4 form">
-                <form action="../controllers//addUserContoller.php" method="POST" enctype="multipart/form-data">
+                <form action="../controllers/addUserContoller.php" method="POST" enctype="multipart/form-data">
                     <h2 class="text-center mb-4 text-primary">Add User</h2>
 
     
@@ -33,6 +33,10 @@
                     <div class="mb-3">
                         <input class="form-control" type="text" name="phone" placeholder="Phone" required>
                     </div>
+                      <div class="mb-3">
+                        <input class="form-control" type="text" name="code" placeholder="Code" required>
+                    </div>
+                
                 
                 
                     <div class="mb-3">
