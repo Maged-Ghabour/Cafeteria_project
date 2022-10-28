@@ -11,19 +11,19 @@ $password = $_POST['password'] ;
 $confirm = $_POST['cpassword'] ;
 $room = $_POST['room'] ;
 $phone = $_POST['phone'] ;
-$code = $_POST['code'] ;
+
 
 if ($password !== $confirm ) {
     echo "password dont match";
 }
-if (empty($name) && empty($email) && empty($password) && empty($confirm) && empty($code)) {
+if (empty($name) && empty($email) && empty($password) && empty($confirm)) {
   echo "please insert the empty fields . <br>";
 }
 
-if ($password === $confirm && !empty($name) &&  !empty($email) &&  !empty($password) &&  !empty($confirm) &&  !empty($code)) {
+if ($password === $confirm && !empty($name) &&  !empty($email) &&  !empty($password) &&  !empty($confirm)) {
    global $conn ; 
-    $conn->query("INSERT INTO users ( name , email , password , phone , code , room_id  ) 
-    VALUES ( '$name' , '$email' , '$password' , $phone , '$code' , $room )") ;
+    $conn->query("INSERT INTO users ( name , email , password , phone , room_id  ) 
+    VALUES ( '$name' , '$email' , '$password' , $phone  , $room )") ;
     header("Location: ../views/allUsers.php");
 }
 
