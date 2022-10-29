@@ -58,6 +58,21 @@ $categories = $categories->productCat();
         </div>
     </div>
     <!-- End Breadcrumbs -->
+
+
+    <?php if (isset($_SESSION['errors']) && $_SESSION['errors'] != []) { ?>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-6 m-auto">
+                    <?php foreach ($_SESSION['errors'] as $error) { ?>
+                        <li class="list-unstyled bg-danger text-center text-white"><?php echo $error; ?></li>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+
+    <?php $_SESSION['errors'] = [];  ?>
     <section class="sample-page">
         <div class="container">
             <div class="row">

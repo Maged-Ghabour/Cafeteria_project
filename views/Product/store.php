@@ -2,6 +2,7 @@
 include('../../includes/session.php');
 include('../../controllers/DBController.php');
 include('../../controllers/ProductController.php');
+include('../../controllers/ValidatorController.php');
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
@@ -20,15 +21,32 @@ if (isset($_POST['submit'])) {
 
     $extension = $file_path_info['extension'];
 
-    $new_img_name = uniqid() . '.' . $extension;
+    // create
 
-    $destenation = "../../uploads/" . $new_img_name;
 
-    move_uploaded_file($file_tmp_name, $destenation);
+    $validator = new Validator();
 
-    $newProdcut = new Product();
-    $newProdcut->store($name, $price, $new_img_name, $category_id);
-    header('location: index.php');
+    $name = $validator->name($name);
+
+    $price = $validator->price($price);
+
+    $img_upload = $validator->image($file_name, $file_error, $extension);
+
+    $errors = $validator->errors;
+    if ($errors !== []) {
+        $_SESSION['errors'] = $errors;
+        header('location:create.php');
+    } else {
+        $new_img_name = uniqid() . '.' . $extension;
+
+        $destenation = "../../uploads/" . $new_img_name;
+
+        move_uploaded_file($file_tmp_name, $destenation);
+
+        $newProdcut = new Product();
+        $newProdcut->store($name, $price, $new_img_name, $category_id);
+        header('location: index.php');
+    }
 } else {
     header('location:../../index.php');
 }
