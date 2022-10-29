@@ -91,15 +91,16 @@ $products = $products->index();
                                         <?php
                                         // $admin = "SELECT * FROM users WHERE is_admin == 1";
 
-                                        if (isset($_SESSION['name'])) { ?>
-                                            <a href="edit.php?id=<?php echo $product['id']; ?>" title="edit" class="btn btn-success text-white btn-sm">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <?php echo $_SESSION['room_id']; ?>
-                                            <a href="destroy.php?id=<?php echo $product['id']; ?>" title="Delete" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure You Want To Delete This Product ?') ;">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        <?php } ?>
+                                        // if (isset($_SESSION['id']) && $_SESSION['is_admin'] == 1) { 
+                                        ?>
+                                        <a href="edit.php?id=<?php echo $product['id']; ?>" title="edit" class="btn btn-success text-white btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="destroy.php?id=<?php echo $product['id']; ?>" title="Delete" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure You Want To Delete This Product ?') ;">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                        <? // php } 
+                                        ?>
                                     </div>
                                 </div>
                             </div>

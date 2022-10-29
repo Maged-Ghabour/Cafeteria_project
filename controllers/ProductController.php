@@ -7,7 +7,7 @@ class Product
     {
         global $conn;
         $sql = "SELECT products.*, category.id AS category_id, category.name AS category_name
-            FROM products JOIN category JOIN users
+            FROM products JOIN category
             ON products.category_id = category.id
             ORDER BY products.id DESC";
         $result = $conn->query($sql);
