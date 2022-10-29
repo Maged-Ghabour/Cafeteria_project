@@ -1,96 +1,80 @@
 <?php
 
-require_once "DBConntroller.php";
 class User
 {
-
-    // Get All users 
-    public function getAll()
+    // get all Users
+    public function index()
     {
         global $conn;
-        $query  = "SELECT * FROM users";
-        $result = $conn->query($query);
+        $sql = "SELECT * from users";
 
+        $result = $conn->query($sql);
         $users = [];
 
         if ($result->num_rows > 0) {
+            // output data of each row 
             while ($row = $result->fetch_assoc()) {
                 array_push($users, $row);
             }
+            return $users;
+        } else {
+            return false;
         }
-        return $users;
     }
 
-
-    // Get One User 
-    public function getOne($id)
+    // Show Product by id 
+    public function show($id)
     {
         global $conn;
-        $query = "SELECT * FROM users 
-              WHERE id = '$id' ";
-        $result = $conn->query($query);
+        $sql = "SELECT * from users
+        WHERE users.id = '$id'";
 
-        $user = null;
+        $result = $conn->query($sql);
 
         if ($result->num_rows == 1) {
-            $user = $result->fetch_assoc();
+            $product = $result->fetch_assoc();
+            return $product;
+        } else {
+            return false;
         }
-        return $user;
     }
 
-    // Create new User 
 
-    public function store(array $data)
+
+    // Update User
+    public function update($id, $name,  $room_id, $email, $password , $phone , $image)
     {
         global $conn;
-        $query = "INSERT INTO users (`id_room` , `name` , `email`, `password` , `phone` , `code` , `image`)
-        VALUES ('{$data['id_room']}' , '{$data['name']}' , '{$data['email']}' , '{$data['password']}' , '{$data['phone']}' , '{$data['code']}' , '{$data['image']}'  )";
 
-        $result = $conn->query($query);
+        $name = mysqli_real_escape_string($conn, $name);
+        $sql = "UPDATE users  
+            SET `name` = '$name' , 
+                `room_id` = '$room_id' ,
+                `email` = '$email' , 
+                `password` = '$password' ,
+                `phone` = '$phone' ,
+                `image` = '$image' ,
 
-        if ($result == true) {
+
+            WHERE `id` = '$id' ";
+
+        if ($conn->query($sql) === TRUE) {
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
-
-    // update user 
-
-    // Create new User 
-
-    public function update($id, array $data)
+    // Delete Product 
+    function destroy($id)
     {
         global $conn;
-        $query = "UPDATE users SET 
-            `room_id` = '{$data['room_id']}',
-            `name` = '{$data['name']}',
-            `email` = '{$data['email']}',
-            `password` = '{$data['password']}',
-            `phone` = '{$data['phone']}',
-            `image` = '{$data['image']}'
-             Where 'id' = $id ";
-        $result = $conn->query($query);
-
-        if ($result == true) {
+        $sql = "DELETE FROM users WHERE id = '$id'";
+        if ($conn->query($sql) === TRUE) {
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
-
-    //Delete 
-
-    public function delete($id)
-    {
-        global $conn;
-        $query = "DELETE FROM users 
-              WHERE id = '$id' ";
-
-        $result = $conn->query($query);
-        if ($result == true) {
-            return true;
-        }
-        return false;
-    }
 }

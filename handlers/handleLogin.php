@@ -29,6 +29,7 @@ if (isset($_POST["submit"])){
     if($errors == []){
        
         $user = new Login; 
+        
         $result = $user->attempt($email , $password);
      
 
@@ -36,6 +37,9 @@ if (isset($_POST["submit"])){
         if ($result !== null){
             $_SESSION["id"] = $result["id"];
             $_SESSION["name"] = $result["name"];
+            $_SESSION["is_admin"] = $result["is_admin"];
+           
+         
             header("location:../index.php");
     
         } else{
