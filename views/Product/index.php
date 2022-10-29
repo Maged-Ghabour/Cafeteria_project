@@ -2,7 +2,7 @@
     session_start();
 
 
-
+    
     ?>
 
 
@@ -69,12 +69,25 @@ $products = $products->index();
 
     <section class="sample-page">
         <div class="container data-aos='fade-up'">
-            <a href="create.php" title="create" class="btn btn-success text-white btn-sm">
-                <i class="fas fa-plus"></i>
-            </a>
+
+        <?php 
+
+            if(isset($_SESSION['is_admin'])){
+                if($_SESSION['is_admin'] == 1  ) { ?>
+                        <a href="create.php" title="create" class="btn btn-success text-white btn-sm">
+                            <i class="fas fa-plus"></i>
+                        </a>
+
+        <?php }} ?>
+                
             <div class="row">
                 <!-- CURD Product  -->
-                <?php foreach ($products as $product) { ?>
+                <?php foreach ($products as $product) {
+                    
+                    
+                    ?>
+  
+
                     <div class="col-md-4 mb-5">
                         <div class="card">
                             <img src="../../uploads/<?php echo $product['image']; ?>" class="w-100">
@@ -99,7 +112,11 @@ $products = $products->index();
                                         </a>
                                    
 
-                                        <?php if(isset($_SESSION['is_admin'])) { ?>
+
+
+                                        <?php 
+                                        if(isset($_SESSION['is_admin'])){
+                                        if($_SESSION['is_admin'] == 1  ) { ?>
                                         <a href="edit.php?id=<?php echo $product['id']; ?>" title="edit" class="btn btn-success text-white btn-sm">
                                             <i class="fas fa-edit"></i>
                                         </a>
@@ -107,7 +124,7 @@ $products = $products->index();
                                             <i class="fas fa-trash"></i>
                                         </a>
 
-                                        <?php } ?>
+                                        <?php }} ?>
 
 
 
