@@ -33,7 +33,6 @@
 include('../../includes/session.php');
 include('../../includes/navbar.php');
 ?>
-
 <!-- include database -->
 <?php
 include('../../controllers/DBController.php');
@@ -41,8 +40,8 @@ include('../../controllers/ProductController.php');
 
 $products = new Product();
 $products = $products->index();
-?>
 
+?>
 <!-- Start Main  -->
 <main id="main">
     <!-- ======= Breadcrumbs ======= -->
@@ -89,13 +88,18 @@ $products = $products->index();
                                         <a href="show.php?id=<?php echo $product['id']; ?>" title="show" class="btn btn-info text-white btn-sm">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        <a href="edit.php?id=<?php echo $product['id']; ?>" title="edit" class="btn btn-success text-white btn-sm">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a href="destroy.php?id=<?php echo $product['id']; ?>" title="Delete" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure You Want To Delete This Product ?') ;">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
+                                        <?php
+                                        // $admin = "SELECT * FROM users WHERE is_admin == 1";
 
+                                        if (isset($_SESSION['name'])) { ?>
+                                            <a href="edit.php?id=<?php echo $product['id']; ?>" title="edit" class="btn btn-success text-white btn-sm">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <?php echo $_SESSION['room_id']; ?>
+                                            <a href="destroy.php?id=<?php echo $product['id']; ?>" title="Delete" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure You Want To Delete This Product ?') ;">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>

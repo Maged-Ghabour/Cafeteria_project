@@ -17,7 +17,7 @@ session_start();
                 <ul>
                     <li><a href="#hero">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="../../views/Product/index.php">Products</a></li>
+                    <li><a href="../../Cafeteria_project/views/Product/index.php">Products</a></li>
                     <li><a href="#events">Events</a></li>
                     <li><a href="#chefs">Chefs</a></li>
                     <li><a href="#gallery">Gallery</a></li>
