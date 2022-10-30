@@ -39,10 +39,8 @@ class User
         }
     }
 
-
-
     // Update User
-    public function update($id, $name,  $room_id, $email, $password , $phone , $image)
+    public function update($id, $name,  $room_id, $email, $password, $phone)
     {
         global $conn;
 
@@ -52,10 +50,7 @@ class User
                 `room_id` = '$room_id' ,
                 `email` = '$email' , 
                 `password` = '$password' ,
-                `phone` = '$phone' ,
-                `image` = '$image' ,
-
-
+                `phone` = '$phone' 
             WHERE `id` = '$id' ";
 
         if ($conn->query($sql) === TRUE) {
@@ -76,5 +71,4 @@ class User
             return false;
         }
     }
-
 }
