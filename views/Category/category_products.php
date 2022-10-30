@@ -65,15 +65,19 @@ $products = $products->showCategoryProducts($id);
 
     <section class="sample-page">
         <div class="container data-aos='fade-up'">
-            <a href="create.php" title="create" class="btn btn-success text-white btn-sm">
-                <i class="fas fa-plus"></i>
-            </a>
+            <?php if (isset($_SESSION['is_admin'])) {
+                if ($_SESSION['is_admin'] == 1) { ?>
+                    <a href="create.php" title="create" class="btn btn-success text-white btn-sm">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                <?php } ?>
+            <?php } ?>
             <div class="row">
                 <!-- CURD Product  -->
                 <?php if ($products !== false) { ?>
                     <h2 class="text-center"> Show Category Products</h2>
                     <?php foreach ($products as $product) { ?>
-                        <div class="col-md-4 mb-2 mt-3">
+                        <div class="col-md-3 mb-2 mt-3">
                             <div class="card">
                                 <img src="../../uploads/<?php echo $product['image']; ?>" class="w-100">
                                 <div class="card-body bg-light">
@@ -81,7 +85,7 @@ $products = $products->showCategoryProducts($id);
                                         <?php echo $product['name'];  ?>
                                     </h3>
                                     <p class="text-center">
-                                        <strong>desc: </strong>
+                                        <strong>Price: </strong>
                                         <?php echo $product['price'];  ?>
                                     </p>
 

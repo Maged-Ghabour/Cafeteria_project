@@ -69,17 +69,40 @@ $cats = $cats->index();
 
                         <div class="row gy-5">
                             <?php foreach ($products as $product) { ?>
-                                <div class="col-lg-4 menu-item">
-                                    <a href="views/Product/show.php?id=<?php echo $product['id']; ?>" class="glightbox">
-                                        <img src="uploads/<?php echo $product['image']; ?>" class="img-fluid w-100" alt="" />
-                                    </a>
-                                    <div class="d-flex justify-content-between pt-2">
-                                        <h4><?php echo $product['name']; ?></h4>
-                                        <p class="price">$<?php echo $product['price'] ?> </p>
+                                <div class="col-md-3 mb-5">
+                                    <div class="card">
+                                        <img src="uploads/<?php echo $product['image']; ?>" class="w-100">
+                                        <div class="card-body bg-light">
+                                            <h3 class="card-title text-center">
+                                                <?php echo $product['name'];  ?>
+                                            </h3>
+                                            <p class="text-center">
+                                                <strong>Catgeory: </strong>
+                                                <?php echo $product['category_name'];  ?>
+                                            </p>
+                                            <p class="text-center">
+                                                <strong>Price: </strong>
+                                                <?php echo $product['price'];  ?>
+                                            </p>
+                                            <div class="d-flex justify-content-center mt-4">
+                                                <div>
+                                                    <a href="views/Product/show.php?id=<?php echo $product['id']; ?>" title="show" class="btn btn-info text-white btn-sm">
+                                                        Show<i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <?php if (isset($_SESSION['is_admin'])) {
+                                                        if ($_SESSION['is_admin'] == 1) { ?>
+                                                            <a href="views/Product/edit.php?id=<?php echo $product['id']; ?>" title="edit" class="btn btn-success text-white btn-sm">
+                                                                Edit <i class="fas fa-edit"></i>
+                                                            </a>
+                                                            <a href="views/Product/destroy.php?id=<?php echo $product['id']; ?>" title="Delete" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure You Want To Delete This Product ?') ;">
+                                                                Delete<i class="fas fa-trash"></i>
+                                                            </a>
+                                                        <?php } ?>
+                                                    <?php } ?>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <a href="views/showcate.php?id=<?php echo $product['category_id']; ?>">
-                                        <p class="text-primary"><?php echo $product['category_name']; ?></p>
-                                    </a>
                                 </div>
                                 <!-- Menu Item -->
                             <?php } ?>
