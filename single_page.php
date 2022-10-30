@@ -1,8 +1,8 @@
 <!-- Start Includes -->
 <?php
-include('includes/session.php');
-include('includes/head.php');
-include('includes/navbar.php');
+include('../../includes/session.php');
+include('../../includes/head.php');
+include('../../includes/navbar.php');
 ?>
 
 <!-- Start Main  -->

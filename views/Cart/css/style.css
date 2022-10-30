@@ -128,14 +128,14 @@ body{
 .form-container form p a:hover{
    text-decoration: underline;
 }
-
+/*
 .container{
    padding:0 20px;
    margin:0 auto;
    max-width: 1200px;
-   padding-bottom: 70px;
+   
 }
-
+*/
 .container .heading{
    text-align: center;
    margin-bottom: 20px;
@@ -178,6 +178,7 @@ body{
    flex-wrap: wrap;
    gap:15px;
    justify-content: flex-start;
+   margin-bottom: 60px;
 }
 
 .container .products .box-container .box{
