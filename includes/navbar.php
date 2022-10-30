@@ -1,7 +1,12 @@
 <?php
 
+
+
+
 function Url($input = null)
 {
+
+
     return "http://" . $_SERVER['HTTP_HOST'] . "/Cafeteria_project/" . $input;
 }
 ?>
