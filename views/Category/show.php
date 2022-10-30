@@ -36,12 +36,11 @@ include('../../includes/navbar.php');
 
 <?php
 include('../../controllers/DBController.php');
-include('../../controllers/ProductController.php');
-include('../../controllers/categoryController.php');
+include('../../controllers/CategoryController.php');
 
 $id = $_GET['id'];
-$product = new Product();
-$product = $product->show($id);
+$category = new Category();
+$category = $category->show($id);
 ?>
 
 <!-- Start Main  -->
@@ -53,7 +52,7 @@ $product = $product->show($id);
                 <h2>Sample Inner Page</h2>
                 <ol>
                     <li><a href="index.html">Home</a></li>
-                    <li>Sample Inner Page</li>
+                    <li>Show Category</li>
                 </ol>
             </div>
         </div>
@@ -61,19 +60,16 @@ $product = $product->show($id);
     <!-- End Breadcrumbs -->
     <section class="sample-page">
         <!--View Products If there are products found  -->
+        <h2 class="text-center"> <?php echo $category['name']; ?> Category</h2>
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-6 m-auto">
-                    <img src="../../uploads/<?php echo $product['image']; ?>" class="w-100" alt="1.jpg" title="Laptop">
+                    <img src="../../uploads/<?php echo $category['image']; ?>" class="w-100" alt="1.jpg" title="Laptop">
                     <h3 class="text-center">
-                        <?php echo $product['name'];  ?>
+                        <?php echo $category['name'];  ?>
                     </h3>
                     <p class="price">
-                        <?php echo "$" . number_format($product['price']); ?>
-                    </p>
-                    <p class="text-center">
-                        <strong>Category : </strong>
-                        <?php echo $product['category_name'];  ?>
+                        <?php echo $category['description']; ?>
                     </p>
                 </div>
             </div>

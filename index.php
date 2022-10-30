@@ -4,12 +4,17 @@ include('includes/session.php');
 include('includes/head.php');
 include('includes/navbar.php');
 include('controllers/DBController.php');
+include('controllers/CategoryController.php');
 include('controllers/ProductController.php');
 ?>
 
 <?php
 $products = new Product();
 $products = $products->index();
+
+$cats = new Category();
+$cats = $cats->index();
+
 ?>
 <!-- ======= Categories ======= -->
 <section id="hero" class="hero d-flex align-items-center section-bg">
@@ -45,10 +50,10 @@ $products = $products->index();
             </div>
 
             <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
-                <?php foreach ($products as $product) { ?>
+                <?php foreach ($cats as $cat) { ?>
                     <li class="nav-item">
-                        <a class="nav-link active show" href="views/showcate.php?id=<?php echo $product['category_id']; ?>">
-                            <h4><?php echo $product['category_id']; ?></h4>
+                        <a class="nav-link active show" href="views/Category/show.php?id=<?php echo $cat['id']; ?>">
+                            <h4><?php echo $cat['name']; ?></h4>
                         </a>
                     </li>
                 <?php } ?>

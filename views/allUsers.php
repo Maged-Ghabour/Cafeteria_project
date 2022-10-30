@@ -64,14 +64,14 @@ $users = $users->index();
     <section class="sample-page">
         <div class="container">
 
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <a class="btn btn-primary mb-3 mt-0  me-2" href="<?php echo url('views/addUser.php') ?>">
-                            Add New User
-                </a>         
-        </div>
-                
+                    Add New User
+                </a>
+            </div>
+
             <div class="table-responsive">
-              
+
                 <table class="table table-striped">
                     <thead>
                         <th>ID</th>
@@ -80,37 +80,35 @@ $users = $users->index();
                         <th>Phone</th>
                         <th>Image</th>
                         <th>Room</th>
-                        <th>Ext</th>
                         <th>Action</th>
                     </thead>
                     <tbody>
-                        <?php foreach ($users as $user){ ?>
+                        <?php foreach ($users as $user) { ?>
 
                             <tr>
-                                <td><?php echo $user["id"]?> </td>
+                                <td><?php echo $user["id"] ?> </td>
                                 <td><?php echo $user["name"] ?> </td>
                                 <td><?php echo $user["email"] ?> </td>
                                 <td><?php echo $user["phone"] ?> </td>
-                                <td><?php echo $user["image"] ?> </td>
-                                <td><?php echo $user["room_id"] ?> </td>
+                                <td><img width="60px" src="../uploads/<?php echo $user['image']; ?>" alt=""> </td>
                                 <td><?php echo $user["room_id"] ?> </td>
                                 <td>
-                              
-                                        <a href="show.php?id=<?php echo $user['id']; ?>" title="show" class="btn btn-info text-white btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="edit.php?id=<?php echo $user['id']; ?>" title="edit" class="btn btn-success text-white btn-sm">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a href="destroy.php?id=<?php echo $user['id']; ?>" title="Delete" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure You Want To Delete This User ?') ;">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
 
-                           
-                            
-                            
+                                    <a href="show.php?id=<?php echo $user['id']; ?>" title="show" class="btn btn-info text-white btn-sm">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="edit.php?id=<?php echo $user['id']; ?>" title="edit" class="btn btn-success text-white btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="destroy.php?id=<?php echo $user['id']; ?>" title="Delete" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure You Want To Delete This User ?') ;">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+
+
+
+
                                 </td>
-                               
+
                             </tr>
 
                         <?php } ?>

@@ -39,10 +39,10 @@ include('../../includes/navbar.php');
 <!-- include database -->
 <?php
 include('../../controllers/DBController.php');
-include('../../controllers/ProductController.php');
+include('../../controllers/CategoryController.php');
 
-$products = new Product();
-$products = $products->index();
+$categories = new Category();
+$categories = $categories->index();
 
 ?>
 <!-- Start Main  -->
@@ -54,7 +54,7 @@ $products = $products->index();
                 <h2>Sample Inner Page</h2>
                 <ol>
                     <li><a href="index.php">Home</a></li>
-                    <li>All Products</li>
+                    <li>All categories</li>
                 </ol>
             </div>
         </div>
@@ -63,54 +63,37 @@ $products = $products->index();
 
     <section class="sample-page">
         <div class="container data-aos='fade-up'">
-
-            <?php
-
-            if (isset($_SESSION['is_admin'])) {
-                if ($_SESSION['is_admin'] == 1) { ?>
-                    <a href="create.php" title="create" class="btn btn-success text-white btn-sm">
-                        <i class="fas fa-plus"></i>
-                    </a>
-
-            <?php }
-            } ?>
-
+            <a href="create.php" title="create" class="btn btn-success text-white btn-sm">
+                <i class="fas fa-plus"></i>
+            </a>
             <div class="row">
                 <!-- CURD Product  -->
-                <?php foreach ($products as $product) {
-
-
-                ?>
-
-
+                <?php foreach ($categories as $category) { ?>
                     <div class="col-md-4 mb-5">
                         <div class="card">
-                            <img src="../../uploads/<?php echo $product['image']; ?>" class="w-100">
+                            <img src="../../uploads/<?php echo $category['image']; ?>" class="w-100">
                             <div class="card-body bg-light">
                                 <h3 class="card-title text-center">
-                                    <?php echo $product['name'];  ?>
+                                    <?php echo $category['name'];  ?>
                                 </h3>
-                                <p class="text-center">
-                                    <strong>Catgeory: </strong>
-                                    <?php echo $product['category_name'];  ?>
-                                </p>
 
                                 <p class="text-center">
-                                    <strong>Price: </strong>
-                                    <?php echo $product['price'];  ?>
+                                    <strong>desc: </strong>
+                                    <?php echo $category['description'];  ?>
                                 </p>
 
                                 <div class="d-flex justify-content-center mt-4">
                                     <div>
-                                        <a href="show.php?id=<?php echo $product['id']; ?>" title="show" class="btn btn-info text-white btn-sm">
+
+                                        <a href="category_products.php?id=<?php echo $category['id']; ?>" title="show" class="btn btn-info text-white btn-sm">
                                             <i class="fas fa-eye"></i>
                                         </a>
                                         <?php if (isset($_SESSION['is_admin'])) {
                                             if ($_SESSION['is_admin'] == 1) { ?>
-                                                <a href="edit.php?id=<?php echo $product['id']; ?>" title="edit" class="btn btn-success text-white btn-sm">
+                                                <a href="edit.php?id=<?php echo $category['id']; ?>" title="edit" class="btn btn-success text-white btn-sm">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <a href="destroy.php?id=<?php echo $product['id']; ?>" title="Delete" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure You Want To Delete This Product ?') ;">
+                                                <a href="destroy.php?id=<?php echo $category['id']; ?>" title="Delete" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure You Want To Delete This category ?') ;">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             <?php } ?>

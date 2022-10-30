@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link href="../../assets/css/main.css" rel="stylesheet" />
 </head>
+<!-- Start Includes -->
 <?php
 include('../../includes/session.php');
 include('../../includes/navbar.php');
@@ -36,12 +37,15 @@ include('../../includes/navbar.php');
 
 <?php
 include('../../controllers/DBController.php');
-include('../../controllers/ProductController.php');
-include('../../controllers/categoryController.php');
+include('../../controllers/CategoryController.php');
 
-$id = $_GET['id'];
-$product = new Product();
-$product = $product->show($id);
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $category = new Category();
+    $category = $category->show($id);
+
+    $_SESSION['id'] = $id;
+}
 ?>
 
 <!-- Start Main  -->
@@ -53,34 +57,40 @@ $product = $product->show($id);
                 <h2>Sample Inner Page</h2>
                 <ol>
                     <li><a href="index.html">Home</a></li>
-                    <li>Sample Inner Page</li>
+                    <li>Edit Category</li>
                 </ol>
             </div>
         </div>
     </div>
     <!-- End Breadcrumbs -->
     <section class="sample-page">
-        <!--View Products If there are products found  -->
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-md-6 m-auto">
-                    <img src="../../uploads/<?php echo $product['image']; ?>" class="w-100" alt="1.jpg" title="Laptop">
-                    <h3 class="text-center">
-                        <?php echo $product['name'];  ?>
-                    </h3>
-                    <p class="price">
-                        <?php echo "$" . number_format($product['price']); ?>
-                    </p>
-                    <p class="text-center">
-                        <strong>Category : </strong>
-                        <?php echo $product['category_name'];  ?>
-                    </p>
+        <?php if (isset($_GET['id']) && $category !== false) { ?>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 m-auto form-border">
+                        <form action="update.php" method="POST" enctype="multipart/form-data">
+                            <h5 class="text-center"> Edit New category </h5>
+                            <div class="form-group mt-2">
+                                <label for="name">category name: </label>
+                                <input type="text" class="form-control mt-1" name="name" id="name" value="<?php echo $category['name'] ?>">
+                            </div>
+                            <div class="form-group mt-2">
+                                <label for="price">Product Desription:</label>
+                                <input class="form-control mt-1" name="description" id="description" value="<?php echo $category['description'] ?>">
+                            </div>
+
+                            <div class="text-center">
+                                <!--submit button has a name so that if send data he will check if data sent or not  -->
+                                <input class="btn btn-primary mt-3" type="Submit" name="submit" value="Update Category">
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
             </div>
-        </div>
+        <?php } else { ?>
+            Category Not Found
+        <?php } ?>
     </section>
 </main>
-<!-- End #main -->
-
-<!-- Includes Footer and scripts -->
-<?php include('../../includes/footer.php');
+<?php include('../../includes/footer.php'); ?>
