@@ -1,18 +1,6 @@
-<<<<<<< HEAD
 <?php
 session_start();
 ?>
-=======
-<?php 
-    session_start();
-
-
-    
-    ?>
-
-
-
->>>>>>> fe9b3c151c3a9dc02af61e1e857ea71a3e83a961
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,23 +64,24 @@ $products = $products->index();
     <section class="sample-page">
         <div class="container data-aos='fade-up'">
 
-        <?php 
+            <?php
 
-            if(isset($_SESSION['is_admin'])){
-                if($_SESSION['is_admin'] == 1  ) { ?>
-                        <a href="create.php" title="create" class="btn btn-success text-white btn-sm">
-                            <i class="fas fa-plus"></i>
-                        </a>
+            if (isset($_SESSION['is_admin'])) {
+                if ($_SESSION['is_admin'] == 1) { ?>
+                    <a href="create.php" title="create" class="btn btn-success text-white btn-sm">
+                        <i class="fas fa-plus"></i>
+                    </a>
 
-        <?php }} ?>
-                
+            <?php }
+            } ?>
+
             <div class="row">
                 <!-- CURD Product  -->
                 <?php foreach ($products as $product) {
-                    
-                    
-                    ?>
-  
+
+
+                ?>
+
 
                     <div class="col-md-4 mb-5">
                         <div class="card">
@@ -116,7 +105,6 @@ $products = $products->index();
                                         <a href="show.php?id=<?php echo $product['id']; ?>" title="show" class="btn btn-info text-white btn-sm">
                                             <i class="fas fa-eye"></i>
                                         </a>
-<<<<<<< HEAD
                                         <?php if (isset($_SESSION['is_admin'])) {
                                             if ($_SESSION['is_admin'] == 1) { ?>
                                                 <a href="edit.php?id=<?php echo $product['id']; ?>" title="edit" class="btn btn-success text-white btn-sm">
@@ -127,42 +115,6 @@ $products = $products->index();
                                                 </a>
                                             <?php } ?>
                                         <?php } ?>
-=======
-                                   
-
-
-
-                                        <?php 
-                                        if(isset($_SESSION['is_admin'])){
-                                        if($_SESSION['is_admin'] == 1  ) { ?>
-                                        <a href="edit.php?id=<?php echo $product['id']; ?>" title="edit" class="btn btn-success text-white btn-sm">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a href="destroy.php?id=<?php echo $product['id']; ?>" title="Delete" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure You Want To Delete This Product ?') ;">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-
-                                        <?php }} ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                        <? // php } 
-                                        ?>
->>>>>>> fe9b3c151c3a9dc02af61e1e857ea71a3e83a961
                                     </div>
                                 </div>
                             </div>
