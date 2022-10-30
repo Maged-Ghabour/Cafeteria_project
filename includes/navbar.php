@@ -25,9 +25,10 @@ function Url($input = null){
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a href="<?php echo url('/') ?>">Home</a></li>
-                    <?php if(isset($_SESSION['is_admin'])) { ?>
+                    <?php      if(isset($_SESSION['is_admin'])){
+                               if($_SESSION['is_admin'] == 1  ) { ?>?>
                     <li><a href="<?php echo url('views/allUsers.php') ?>">Users</a></li>
-                    <?php } ?>
+                    <?php } }?>
                     <li><a href="<?php echo url('views/Product/') ?>">Products</a></li>
                     <li><a href="#events">Manual orders</a></li>
                     <li><a href="#chefs">Checks</a></li>
