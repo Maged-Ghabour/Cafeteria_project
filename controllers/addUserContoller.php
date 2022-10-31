@@ -1,3 +1,27 @@
+<html>
+    <a href="../views/addUser.php">Back To Add User</a> <br><br>
+  </html>
+  <style>
+  body{
+    text-align : center ;
+  }
+ a:link, a:visited {
+  background-color: #f44336;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border: 1px solid black;
+  border-radius : 3px ;
+  position: relative;
+  top: 200px;
+
+  
+}
+
+  </style>
+
 <?php
 
 
@@ -19,7 +43,12 @@ $file_tmp_name = $files['tmp_name'];
 
 
 if ($password !== $confirm) {
-  echo "password dont match";
+  
+  echo "<h1 style='color:black;text-align:center;font-weight: bold;'> Password does not Match </h1>";
+  
+
+
+
 }
 if (empty($name) && empty($email) && empty($password) && empty($confirm)) {
   echo "please insert the empty fields . <br>";
