@@ -83,38 +83,34 @@ function Validate($input, $flag, $length = 6)
             }
             break;
 
-       case "FutureDate":
-        # code .... 
-          $date = strtotime($input); 
-           if($date <  time() ){
-               $status = false; 
-           } 
-           break; 
+        case "FutureDate":
+            # code .... 
+            $date = strtotime($input);
+            if ($date <  time()) {
+                $status = false;
+            }
+            break;
 
-      case "string" : 
-      # code .... 
-        
-      if (!preg_match("/^[a-zA-Z\s']*$/",$input)) {
-       $status = false;
-      }
+        case "string":
+            # code .... 
 
-       break; 
+            if (!preg_match("/^[a-zA-Z\s']*$/", $input)) {
+                $status = false;
+            }
+
+            break;
 
 
-       case "phone" : 
-        # code .... 
-          
-
-  
-        if (!preg_match("/^01[0-2,5][0-9]{8}$/",$input)) {
-         $status = false;
-        }
-  
-         break; 
+        case "phone":
+            # code .... 
 
 
 
+            if (!preg_match("/^01[0-2,5][0-9]{8}$/", $input)) {
+                $status = false;
+            }
 
+            break;
     }
 
     return $status;
@@ -135,7 +131,6 @@ function PrintMessages($message = null)
 
             echo '*' . $key . ' : ' . $value . '<br>';
         }
-
         unset($_SESSION['Message']);
     } else {
         echo '   <li class="breadcrumb-item active">' . $message . '</li>';
@@ -203,15 +198,11 @@ function Upload($input)
 }
 
 
-
-
-
-
 # Url ... 
 
-function Url($input = null){
-      
-    
-    return "http://".$_SERVER['HTTP_HOST']."/Cafeteria_project/".$input; 
+function Url($input = null)
+{
 
+
+    return "http://" . $_SERVER['HTTP_HOST'] . "/Cafeteria_project/" . $input;
 }
