@@ -37,6 +37,7 @@ include('../includes/navbar.php');
 <?php
 include('../controllers/DBController.php');
 include('../controllers/ProductController.php');
+include('../controllers/UserController.php');
 
 $id = $_GET['id'];
 $user = new User();
@@ -58,28 +59,50 @@ $user = $user->show($id);
         </div>
     </div>
     <!-- End Breadcrumbs -->
-    <section class="sample-page">
-        <!--View Products If there are products found  -->
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-md-6 m-auto">
-                    <img src="../../uploads/<?php echo $product['image']; ?>" class="w-100" alt="1.jpg" title="Laptop">
-                    <h3 class="text-center">
-                        <?php echo $product['name'];  ?>
-                    </h3>
-                    <p class="price">
-                        <?php echo "$" . number_format($product['price']); ?>
-                    </p>
-                    <p class="text-center">
-                        <strong>Category : </strong>
-                        <?php echo $product['category_name'];  ?>
-                    </p>
-                </div>
+     <section class="sample-page">
+        <div class="container">
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a class="btn btn-primary mb-3 mt-0  me-2" href="<?php echo url('views/addUser.php') ?>">
+                    Add New User
+                </a>
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table table-striped">
+                    <thead>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Image</th>
+                        <th>phone</th>
+                        <th>Room</th>
+                        
+                    </thead>
+                    <tbody>
+                       
+
+                            <tr>
+                                <td><?php echo $user["id"] ?> </td>
+                                <td><?php echo $user["name"] ?> </td>
+                                <td><?php echo $user["email"] ?> </td>
+                                <td><?php echo $user["phone"] ?> </td>
+                                <td><img width="60px" src="../uploads/<?php echo $user['image']; ?>" alt=""> </td>
+                                <td><?php echo $user["phone"] ?> </td>
+                                <td><?php echo $user["room_id"] ?> </td>
+                              
+
+                            </tr>
+
+                        
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
 </main>
 <!-- End #main -->
 
-<!-- Includes Footer and scripts -->
-<?php include('../../includes/footer.php');
+

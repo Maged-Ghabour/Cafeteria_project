@@ -1,5 +1,5 @@
 <?php
 
-$conn = mysqli_connect('localhost','root','','php_iti_project') or die('connection failed');
+$conn = mysqli_connect('localhost','root','01028199280+','php_iti_project') ;
 
 ?>
