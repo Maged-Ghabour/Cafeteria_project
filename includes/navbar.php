@@ -25,7 +25,10 @@ function Url($input = null)
                     <?php } ?>
                     <li><a href="<?php echo url('views/Product/index.php') ?>">Products</a></li>
                     <li><a href="<?php echo url('views/Category/index.php') ?>">Categories</a></li>
-                    <li><a href="<?php echo url('views/Cart/') ?>">Manual orders</a></li>
+                    <?php if (isset($_SESSION['id'])) { ?>
+                        <li><a href="<?php echo url('views/Cart') ?>">Manual orders</a></li>
+                    <?php } ?>
+                    <?php ?>
                     <li><a href="#chefs">Checks</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
