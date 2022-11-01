@@ -17,9 +17,10 @@ if (isset($_POST['add_user'])) {
    
 
     $newUser = new User();
+    $hash = md5($password);
  
     
-    $newUser->update($_SESSION['id'], $name , $room_id , $email, $password  ,$phone, $image);
+    $newUser->update($_SESSION['id'], $name , $room_id , $email, $hash  ,$phone, $image);
     header('location: allUsers.php');
 } else {
     header('location: allUsers.php');

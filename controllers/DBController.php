@@ -22,6 +22,6 @@ class Db
 }
 
 // Take an Object From Class Db 
-$db = new Db("localhost", "root", "", "php_iti_project");
+$db = new Db("localhost", "root", "01028199280+", "php_iti_project");
 // $conn => used in any page you use database to fetch, get, update and delete data. as ( global $conn)
 $conn = $db->getConnection();

@@ -77,8 +77,9 @@ $users = $users->index();
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>password</th>
                         <th>Phone</th>
-                        <th>Image</th>
+                         <!-- <th>Image</th> -->
                         <th>Room</th>
                         <th>Action</th>
                     </thead>
@@ -89,8 +90,9 @@ $users = $users->index();
                                 <td><?php echo $user["id"] ?> </td>
                                 <td><?php echo $user["name"] ?> </td>
                                 <td><?php echo $user["email"] ?> </td>
+                                <td><?php echo $user["password"] ?> </td>
                                 <td><?php echo $user["phone"] ?> </td>
-                                <td><img width="60px" src="../uploads/<?php echo $user['image']; ?>" alt=""> </td>
+                              <!--  <td><img width="60px" src="../uploads/<?php echo $user['image']; ?>" alt=""> </td> -->
                                 <td><?php echo $user["room_id"] ?> </td>
                                 <td>
 
