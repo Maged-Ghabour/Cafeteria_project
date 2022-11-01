@@ -78,7 +78,7 @@ $user = $user->show($id);
                         <th>password</th>
                         <th>Phone</th>
                        <!-- <th>Image</th> -->
-                        <th>phone</th>
+                        
                         <th>Room</th>
                         
                     </thead>
@@ -92,7 +92,7 @@ $user = $user->show($id);
                                 <td><?php echo $user["password"] ?> </td>
                                 <td><?php echo $user["phone"] ?> </td>
                               <!--  <td><img width="60px" src="../uploads/<?php echo $user['image']; ?>" alt=""> </td> -->
-                                <td><?php echo $user["phone"] ?> </td>
+                                
                                 <td><?php echo $user["room_id"] ?> </td>
                               
 

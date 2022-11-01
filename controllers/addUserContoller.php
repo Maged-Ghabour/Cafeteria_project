@@ -1,4 +1,4 @@
-<html>
+ <html>
     <a href="../views/addUser.php">Back To Add User</a> <br><br>
   </html>
   <style>
@@ -20,7 +20,7 @@
   
 }
 
-  </style>
+  </style> 
 
 <?php
 
@@ -44,7 +44,12 @@ $file_tmp_name = $files['tmp_name'];
 
 if ($password !== $confirm) {
   
-  echo "<h1 style='color:black;text-align:center;font-weight: bold;'> Password does not Match </h1>";
+  // header('Location: ' . $_SERVER['HTTP_REFERER']);
+  
+  echo '<script>alert("Password does not match")</script>';
+
+  
+ // echo "<h1 style='color:black;text-align:center;font-weight: bold;'> Password does not Match </h1>";
   
 
 
