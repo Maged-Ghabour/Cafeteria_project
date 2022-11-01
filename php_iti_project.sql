@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2022 at 11:49 AM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Nov 01, 2022 at 09:34 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -44,7 +45,8 @@ INSERT INTO `cart` (`id`, `name`, `price`, `image`, `quantity`, `user_id`) VALUE
 (39, 'Ashton Strong', 788, 'lab.jpg', 9, 15),
 (40, 'Quinn Miles', 481, '635da29538d4c.jpg', 4, 15),
 (41, 'Cade Roman', 969, '635da27f003f3.jpg', 4, 15),
-(42, 'Aquila Haley', 451, 'smarttv.jpg', 5, 15);
+(42, 'Aquila Haley', 451, 'smarttv.jpg', 5, 15),
+(43, 'Cade Roman', 969, '635da27f003f3.jpg', 1, 19);
 
 -- --------------------------------------------------------
 
@@ -59,13 +61,6 @@ CREATE TABLE `category` (
   `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `category`
---
-
-INSERT INTO `category` (`id`, `name`, `description`, `image`) VALUES
-(1, 'Category 1 ', 'this is a description for catgeory', '1.jpg');
-
 -- --------------------------------------------------------
 
 --
@@ -78,16 +73,31 @@ CREATE TABLE `orders` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `total_price`, `user_id`) VALUES
+(3, 121212, 15),
+(4, 2, 15),
+(11, 7878, 15),
+(12, 78484500, 16),
+(13, 7878, 16);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_product`
+-- Table structure for table `order_details`
 --
 
-CREATE TABLE `order_product` (
+CREATE TABLE `order_details` (
   `id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `product_quantity` int(11) NOT NULL,
+  `product_price` int(11) NOT NULL,
+  `product_total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -103,16 +113,6 @@ CREATE TABLE `products` (
   `image` varchar(255) NOT NULL,
   `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`id`, `name`, `price`, `image`, `category_id`) VALUES
-(6, 'Ashton Strong', 788, 'lab.jpg', 1),
-(7, 'Aquila Haley', 451, 'smarttv.jpg', 1),
-(8, 'Cade Roman', 969, '635da27f003f3.jpg', 1),
-(9, 'Quinn Miles', 481, '635da29538d4c.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -143,7 +143,7 @@ CREATE TABLE `users` (
   `room_id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` int(11) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `is_admin` tinyint(1) NOT NULL DEFAULT 0,
   `phone` varchar(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL
@@ -154,9 +154,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `room_id`, `name`, `email`, `password`, `is_admin`, `phone`, `image`) VALUES
-(10, 1, 'iti', 'iti@iti.com', 123456, 1, '01007852746', '1.png'),
-(15, 1, 'maged', 'maged@yahoo.com', 12345678, 0, '1007852746', NULL),
-(16, 1, 'adel', 'adel@yahoo.com', 123456, 0, '1007852746', NULL);
+(10, 1, 'iti', 'iti@iti.com', '123456', 1, '01007852746', '1.png'),
+(15, 1, 'maged', 'maged@yahoo.com', '12345678', 0, '1007852746', NULL),
+(16, 1, 'adel', 'adel@yahoo.com', '123456', 0, '1007852746', NULL),
+(19, 1, 'Karim', 'karimzakaria345@gmail.com', '123456', 1, '121212121', '1.jpg'),
+(20, 1, 'Amaya Potts', 'sylikuhod@mailinator.com', '123456', 0, '123456789', NULL);
 
 --
 -- Indexes for dumped tables
@@ -183,12 +185,12 @@ ALTER TABLE `orders`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `order_product`
+-- Indexes for table `order_details`
 --
-ALTER TABLE `order_product`
+ALTER TABLE `order_details`
   ADD PRIMARY KEY (`id`),
   ADD KEY `order_id` (`order_id`),
-  ADD KEY `product_id` (`product_id`);
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `products`
@@ -219,7 +221,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -231,13 +233,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `order_product`
+-- AUTO_INCREMENT for table `order_details`
 --
-ALTER TABLE `order_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `order_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -255,7 +257,7 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables
@@ -274,11 +276,11 @@ ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `order_product`
+-- Constraints for table `order_details`
 --
-ALTER TABLE `order_product`
-  ADD CONSTRAINT `order_product_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `order_product_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `order_details`
+  ADD CONSTRAINT `order_id` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `products`
