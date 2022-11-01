@@ -1,18 +1,10 @@
 <?php
 include 'config.php';
-session_start();
+
 
 $user_id = $_SESSION['id'];
 
-if (!isset($user_id)) {
-   header('location:login.php');
-};
 
-if (isset($_GET['logout'])) {
-   unset($user_id);
-   session_destroy();
-   header('location:login.php');
-};
 
 if (isset($_POST['add_to_cart'])) {
 
@@ -51,9 +43,6 @@ if (isset($_GET['delete_all'])) {
 }
 
 ?>
-
-
-
 
 
 
