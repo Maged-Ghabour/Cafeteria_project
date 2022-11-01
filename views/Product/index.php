@@ -68,8 +68,8 @@ $products = $products->index();
 
             if (isset($_SESSION['is_admin'])) {
                 if ($_SESSION['is_admin'] == 1) { ?>
-                    <a href="create.php" title="create" class="btn btn-success text-white btn-sm">
-                        <i class="fas fa-plus"></i>
+                    <a href="create.php" title="create" class="btn btn-primary text-white btn-sm">
+                        <i class="fas fa-plus"></i> Add New Product
                     </a>
 
             <?php }
@@ -77,12 +77,8 @@ $products = $products->index();
 
             <div class="row">
                 <!-- CURD Product  -->
-                <?php foreach ($products as $product) {
-
-
-                ?>
-
-
+                <?php if ($products != null)
+                    foreach ($products as $product) { ?>
                     <div class="col-md-4 mb-5">
                         <div class="card">
                             <img src="../../uploads/<?php echo $product['image']; ?>" class="w-100">
@@ -119,6 +115,11 @@ $products = $products->index();
                                 </div>
                             </div>
                         </div>
+                    </div>
+                <?php }
+                else { ?>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <h5 class="text-danger">No Products Found </h5>
                     </div>
                 <?php } ?>
             </div>

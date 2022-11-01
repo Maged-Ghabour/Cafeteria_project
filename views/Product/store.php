@@ -27,8 +27,8 @@ if (isset($_POST['submit'])) {
     $validator = new Validator();
 
     $name = $validator->name($name);
-
     $price = $validator->price($price);
+    $category_id = $validator->category_id($category_id);
 
     $img_upload = $validator->image($file_name, $file_error, $extension);
 

@@ -38,9 +38,14 @@ include('../../includes/navbar.php');
 <?php
 include('../../controllers/DBController.php');
 include('../../controllers/ProductController.php');
+include('../../controllers/UserController.php');
 
-$categories = new Product();
-$categories = $categories->productCat();
+$products = new Product();
+$products = $products->index();
+
+
+$users = new User();
+$users = $users->index();
 ?>
 
 <!-- Start Main  -->
@@ -52,7 +57,7 @@ $categories = $categories->productCat();
                 <h2>Sample Inner Page</h2>
                 <ol>
                     <li><a href="index.html">Home</a></li>
-                    <li>Create New Product</li>
+                    <li>Create New Order</li>
                 </ol>
             </div>
         </div>
@@ -73,37 +78,71 @@ $categories = $categories->productCat();
     <?php } ?>
 
     <?php $_SESSION['errors'] = [];  ?>
+
     <section class="sample-page">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 m-auto form-border">
                     <form action="store.php" method="post" enctype="multipart/form-data">
-                        <h5 class="text-center"> Add New Product </h5>
+                        <h5 class="text-center"> Add New Order </h5>
+
                         <div class="form-group mt-2">
-                            <label for="name">product name: </label>
-                            <input type="text" class="form-control mt-1" name="name" id="name">
-                        </div>
-                        <div class="form-group mt-2">
-                            <label for="price">Product Price:</label>
-                            <input class="form-control mt-1" name="price" id="price">
-                        </div>
-                        <div class="form-group mt-2">
-                            <label for="id">Select Category: </label>
-                            <select name="category_id" class="form-control mt-1">
+                            <label for="id">Select User: </label>
+                            <select name="user_id" class="form-control mt-1">
+                                <option value="0">Select User</option>
                                 <?php
-                                foreach ($categories as $category) { ?>
-                                    <option value="<?php echo $category['id'] ?>"> <?php echo $category['name'] ?></option>
+                                foreach ($users as $user) { ?>
+                                    <option value="<?php echo $user['id']; ?>"> <?php echo $user['name'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
 
                         <div class="form-group mt-2">
-                            <label for="img">Image</label>
-                            <input type="file" class="form-control mt-1" name="image" id="image">
+                            <label for="total_price">Total Price:</label>
+                            <input class="form-control mt-1" name="total_price" id="total_price">
+                        </div>
+
+                        <div class="row mt-2">
+                            <!-- CURD Product  -->
+                            <?php foreach ($products as $product) {  ?>
+                                <div class="col-md-4 mb-5">
+                                    <div class="card">
+                                        <img src="../../uploads/<?php echo $product['image']; ?>" class="w-100">
+                                        <div class="card-body bg-light">
+                                            <h3 class="card-title text-center">
+                                                <?php echo $product['name'];  ?>
+                                            </h3>
+
+                                            <p class="text-center">
+                                                <strong>Price: </strong>
+                                                <?php echo $product['price'];  ?>
+                                            </p>
+
+                                            <div class="d-flex justify-content-center mt-4">
+                                                <div>
+                                                    <a href="show.php?id=<?php echo $product['id']; ?>" title="show" class="btn btn-info text-white btn-sm">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <?php if (isset($_SESSION['is_admin'])) {
+                                                        if ($_SESSION['is_admin'] == 1) { ?>
+                                                            <a href="edit.php?id=<?php echo $product['id']; ?>" title="edit" class="btn btn-success text-white btn-sm">
+                                                                <i class="fas fa-edit"></i>
+                                                            </a>
+                                                            <a href="destroy.php?id=<?php echo $product['id']; ?>" title="Delete" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure You Want To Delete This Product ?') ;">
+                                                                <i class="fas fa-trash"></i>
+                                                            </a>
+                                                        <?php } ?>
+                                                    <?php } ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } ?>
                         </div>
                         <div class="text-center">
                             <!--submit button has a name so that if send data he will check if data sent or not  -->
-                            <input class="btn btn-primary mt-3" type="Submit" name="submit" value="Add Product">
+                            <input class="btn btn-primary mt-3" type="submit" name="submit" value="Add Order">
                         </div>
                     </form>
                 </div>

@@ -21,6 +21,18 @@ class Validator
         return false;
     }
 
+    public function category_id($category_id)
+    {
+        if ($category_id == null) {
+            $error = 'Please Select Category';
+        } else {
+            return $category_id;
+        }
+        // array if there were an error exists and dont send the user name
+        array_push($this->errors, $error);
+        return false;
+    }
+
     //For Price 
     public function price($price)
     {

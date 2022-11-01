@@ -63,45 +63,57 @@ $categories = $categories->index();
 
     <section class="sample-page">
         <div class="container data-aos='fade-up'">
-            <a href="create.php" title="create" class="btn btn-success text-white btn-sm">
-                <i class="fas fa-plus"></i>
-            </a>
-            <div class="row">
+            <?php
+            if (isset($_SESSION['is_admin'])) {
+                if ($_SESSION['is_admin'] == 1) { ?>
+                    <a href="create.php" title="create" class="btn btn-primary text-white btn-sm">
+                        <i class="fas fa-plus"></i> Add New Category
+                    </a>
+            <?php }
+            }
+            ?>
+            <div class="row mt-2">
                 <!-- CURD Product  -->
-                <?php foreach ($categories as $category) { ?>
-                    <div class="col-md-4 mb-5">
-                        <div class="card">
-                            <img src="../../uploads/<?php echo $category['image']; ?>" class="w-100">
-                            <div class="card-body bg-light">
-                                <h3 class="card-title text-center">
-                                    <?php echo $category['name'];  ?>
-                                </h3>
+                <?php if ($categories != null) {
+                    foreach ($categories as $category) { ?>
+                        <div class="col-md-4 mb-5">
+                            <div class="card">
+                                <img src="../../uploads/<?php echo $category['image']; ?>" class="w-100">
+                                <div class="card-body bg-light">
+                                    <h3 class="card-title text-center">
+                                        <?php echo $category['name'];  ?>
+                                    </h3>
 
-                                <p class="text-center">
-                                    <strong>desc: </strong>
-                                    <?php echo $category['description'];  ?>
-                                </p>
+                                    <p class="text-center">
+                                        <strong>desc: </strong>
+                                        <?php echo $category['description'];  ?>
+                                    </p>
 
-                                <div class="d-flex justify-content-center mt-4">
-                                    <div>
+                                    <div class="d-flex justify-content-center mt-4">
+                                        <div>
 
-                                        <a href="category_products.php?id=<?php echo $category['id']; ?>" title="show" class="btn btn-info text-white btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <?php if (isset($_SESSION['is_admin'])) {
-                                            if ($_SESSION['is_admin'] == 1) { ?>
-                                                <a href="edit.php?id=<?php echo $category['id']; ?>" title="edit" class="btn btn-success text-white btn-sm">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <a href="destroy.php?id=<?php echo $category['id']; ?>" title="Delete" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure You Want To Delete This category ?') ;">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
+                                            <a href="category_products.php?id=<?php echo $category['id']; ?>" title="show" class="btn btn-info text-white btn-sm">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <?php if (isset($_SESSION['is_admin'])) {
+                                                if ($_SESSION['is_admin'] == 1) { ?>
+                                                    <a href="edit.php?id=<?php echo $category['id']; ?>" title="edit" class="btn btn-success text-white btn-sm">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <a href="destroy.php?id=<?php echo $category['id']; ?>" title="Delete" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure You Want To Delete This category ?') ;">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                <?php } ?>
                                             <?php } ?>
-                                        <?php } ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    <?php }
+                } else { ?>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <h5 class="text-danger">No Categories Found </h5>
                     </div>
                 <?php } ?>
             </div>
