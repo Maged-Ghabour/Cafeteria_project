@@ -1,6 +1,7 @@
 <?php
 include 'config.php';
 session_start();
+
 $user_id = $_SESSION['id'];
 
 if (!isset($user_id)) {
@@ -40,6 +41,7 @@ if (isset($_POST['update_cart'])) {
 if (isset($_GET['remove'])) {
    $remove_id = $_GET['remove'];
    mysqli_query($conn, "DELETE FROM `cart` WHERE id = '$remove_id'") or die('query failed');
+   $message[] = 'Product is Deleted';
    header('location:index.php');
 }
 
@@ -53,7 +55,9 @@ if (isset($_GET['delete_all'])) {
 
 
 
-?>
+
+
+
 
 
 <!DOCTYPE html>
@@ -139,12 +143,22 @@ include('../../controllers/DBController.php');
 </div> -->
 
 
+<?php
+if(isset($message)){
+   foreach($message as $message){
+      echo '<div class="message alert alert-success text-center" onclick="this.remove();">'.$message.'</div>';
+   }
+}
+?>
+
+
+</div>
    <div class="container">
       <div class="row">
          <div class="col-8">
             <div class="products">
 
-               <h1 class="heading"> Products </h1>
+               <h2 class="my-3 text-secondary text-center"> Products </h2>
 
                <div class="box-container">
 
@@ -154,10 +168,10 @@ include('../../controllers/DBController.php');
                   while ($row = mysqli_fetch_array($result)) {
                   ?>
                      <form method="post" class="box" action="">
-                        <img src="admin/<?php echo $row['image']; ?>" width="200">
+                        <img src="../../uploads/<?php echo $row['image']; ?>" width="200">
                         <div class="name"><?php echo $row['name']; ?></div>
                         <div class="price"><?php echo $row['price']; ?></div>
-                        <input type="number" min="1" name="quantity" value="1">
+                        <input type="hidden" min="1" name="quantity" value="1">
                         <input type="hidden" name="image" value="<?php echo $row['image']; ?>">
                         <input type="hidden" name="name" value="<?php echo $row['name']; ?>">
                         <input type="hidden" name="price" value="<?php echo $row['price']; ?>">
@@ -174,9 +188,9 @@ include('../../controllers/DBController.php');
          <div class="col-4">
             <div class="shopping-cart">
 
-               <h1 class="heading">Add to cart</h1>
+               <h2 class="mb-2 text-secondary text-center">Cart</h2>
 
-               <table>
+           <table>
                   <thead>
                      <th>image</th>
                      <th>Name</th>
@@ -193,7 +207,7 @@ include('../../controllers/DBController.php');
                         while ($fetch_cart = mysqli_fetch_assoc($cart_query)) {
                      ?>
                            <tr>
-                              <td><img src="admin/<?php echo $fetch_cart['image']; ?>" height="75" alt=""></td>
+                              <td><img src="../../uploads/<?php echo $fetch_cart['image']; ?>" height="75" alt=""></td>
                               <td><?php echo $fetch_cart['name']; ?></td>
                               <td><?php echo $fetch_cart['price']; ?>$ </td>
                               <td>
@@ -220,6 +234,7 @@ include('../../controllers/DBController.php');
                      </tr>
                   </tbody>
                </table>
+           </div>
 
 
 
@@ -227,7 +242,7 @@ include('../../controllers/DBController.php');
          </div>
 
 
-      </div>
+     
    </div>
 
 
